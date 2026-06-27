@@ -1,0 +1,76 @@
+aid: ratehawk
+name: RateHawk
+review:
+  question: Does RateHawk / ETG expose a documented public WebSocket API?
+  answer: false
+  date: '2026-06-25'
+  reviewer: API Evangelist
+  asyncapiSpecCreated: false
+  asyncapiScopeNote: |
+    No AsyncAPI document was authored. The RateHawk / ETG pAPI v3 is a
+    request/response JSON REST API. The only asynchronous behavior is the
+    order booking finish flow, which is implemented as client polling of the
+    Order Booking Finish Status endpoint (and an optional Order Status
+    Webhook), not as a streaming, SSE, or WebSocket transport.
+findings:
+  summary: |
+    RateHawk (Emerging Travel Group, WorldOta pAPI v3) does not publish a
+    documented public WebSocket API. All documented endpoints are HTTPS REST
+    under https://api.worldota.net/api/b2b/v3 and use HTTP POST with JSON
+    bodies (the Endpoints Overview is the one GET). Authentication is HTTP
+    Basic using a key id (username) and key (password). The booking flow is
+    asynchronous but is completed by polling the booking finish status
+    endpoint or via an order status webhook callback - neither is a
+    bidirectional or streaming socket. No ws:// or wss:// endpoint is
+    documented for search, booking, or content.
+  transports:
+    - protocol: REST
+      scheme: https
+      baseURL: https://api.worldota.net/api/b2b/v3
+      documented: true
+    - protocol: Webhook
+      scheme: https
+      note: Optional Order Status Webhook callback to the partner for booking completion; an outbound HTTP callback, not a socket.
+      documented: true
+    - protocol: WebSocket
+      scheme: wss
+      documented: false
+      note: No WebSocket endpoint is documented anywhere in the ETG / RateHawk API reference as of the review date.
+  endpointsConfirmedRest:
+    - GET  https://api.worldota.net/api/b2b/v3/overview/
+    - POST https://api.worldota.net/api/b2b/v3/search/serp/region/
+    - POST https://api.worldota.net/api/b2b/v3/search/serp/hotels/
+    - POST https://api.worldota.net/api/b2b/v3/search/serp/geo/
+    - POST https://api.worldota.net/api/b2b/v3/search/hp/
+    - POST https://api.worldota.net/api/b2b/v3/hotel/prebook/
+    - POST https://api.worldota.net/api/b2b/v3/hotel/order/booking/form/
+    - POST https://api.worldota.net/api/b2b/v3/hotel/order/booking/finish/
+    - POST https://api.worldota.net/api/b2b/v3/hotel/order/booking/finish/status/
+    - POST https://api.worldota.net/api/b2b/v3/hotel/order/info/
+    - POST https://api.worldota.net/api/b2b/v3/hotel/order/cancel/
+    - POST https://api.worldota.net/api/b2b/v3/hotel/info/
+    - POST https://api.worldota.net/api/b2b/v3/hotel/info/dump/
+sources:
+  - url: https://docs.emergingtravel.com/
+    type: Documentation
+    note: ETG API docs home; lists REST base host api.worldota.net; no WebSocket mentioned.
+  - url: https://docs.emergingtravel.com/docs/b2b-api/hotel-search/
+    type: APIReference
+    note: SERP and hotelpage search endpoints are HTTPS POST with JSON.
+  - url: https://docs.emergingtravel.com/docs/b2b-api/booking/check-booking-process/
+    type: Documentation
+    note: Order completion uses polling of booking finish status, not a socket.
+  - url: https://github.com/EmergingTravel/papi-sdk-python
+    type: SDK
+    note: Official Python SDK confirms exact REST endpoint paths and HTTP Basic auth (key id + key).
+actions:
+  asyncapiPath: null
+  apisYmlUpdated: true
+  reason: |
+    No WebSocket or SSE protocol surface exists. The API is REST request/
+    response with an optional webhook callback for booking status, so no
+    AsyncAPI document was created. All confirmed REST endpoints were modeled
+    in openapi/ratehawk-openapi.yml.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

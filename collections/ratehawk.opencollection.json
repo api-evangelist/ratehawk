@@ -1,0 +1,255 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "RateHawk / ETG API (WorldOta APIv3)",
+    "version": "3.0"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{keyId}}",
+      "password": "{{key}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Hotel Search",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Search Engine Results Page by region",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.worldota.net/api/b2b/v3/search/serp/region/",
+            "body": {
+              "type": "json",
+              "data": "{\n  \"checkin\": \"2026-09-01\",\n  \"checkout\": \"2026-09-03\",\n  \"residency\": \"gb\",\n  \"language\": \"en\",\n  \"guests\": [{\"adults\": 2, \"children\": []}],\n  \"region_id\": 965847972,\n  \"currency\": \"EUR\"\n}"
+            }
+          },
+          "docs": "Preliminary SERP search for hotels within a region."
+        },
+        {
+          "info": {
+            "name": "Search Engine Results Page by hotel IDs",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.worldota.net/api/b2b/v3/search/serp/hotels/",
+            "body": {
+              "type": "json",
+              "data": "{\n  \"checkin\": \"2026-09-01\",\n  \"checkout\": \"2026-09-03\",\n  \"residency\": \"gb\",\n  \"language\": \"en\",\n  \"guests\": [{\"adults\": 2, \"children\": []}],\n  \"ids\": [\"test_hotel\"],\n  \"currency\": \"EUR\"\n}"
+            }
+          },
+          "docs": "Preliminary SERP search for specific hotels by identifier."
+        },
+        {
+          "info": {
+            "name": "Search Engine Results Page by geo coordinates",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.worldota.net/api/b2b/v3/search/serp/geo/",
+            "body": {
+              "type": "json",
+              "data": "{\n  \"checkin\": \"2026-09-01\",\n  \"checkout\": \"2026-09-03\",\n  \"residency\": \"gb\",\n  \"language\": \"en\",\n  \"guests\": [{\"adults\": 2, \"children\": []}],\n  \"latitude\": 51.5074,\n  \"longitude\": -0.1278,\n  \"radius\": 3000,\n  \"currency\": \"EUR\"\n}"
+            }
+          },
+          "docs": "Preliminary SERP search for hotels within a radius."
+        },
+        {
+          "info": {
+            "name": "Retrieve hotelpage",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.worldota.net/api/b2b/v3/search/hp/",
+            "body": {
+              "type": "json",
+              "data": "{\n  \"checkin\": \"2026-09-01\",\n  \"checkout\": \"2026-09-03\",\n  \"residency\": \"gb\",\n  \"language\": \"en\",\n  \"guests\": [{\"adults\": 2, \"children\": []}],\n  \"id\": \"test_hotel\",\n  \"currency\": \"EUR\"\n}"
+            }
+          },
+          "docs": "Actualize bookable rates for a single chosen hotel."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Prebook",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Prebook rate from hotelpage step",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.worldota.net/api/b2b/v3/hotel/prebook/",
+            "body": {
+              "type": "json",
+              "data": "{\n  \"hash\": \"<book_hash>\",\n  \"price_increase_percent\": 20\n}"
+            }
+          },
+          "docs": "Revalidate availability and price for a selected rate before booking."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Booking and Orders",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create booking process (order booking form)",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.worldota.net/api/b2b/v3/hotel/order/booking/form/",
+            "body": {
+              "type": "json",
+              "data": "{\n  \"partner_order_id\": \"my-order-001\",\n  \"book_hash\": \"<book_hash>\",\n  \"language\": \"en\",\n  \"user_ip\": \"1.2.3.4\"\n}"
+            }
+          },
+          "docs": "Create a new reservation process from a prebooked rate."
+        },
+        {
+          "info": {
+            "name": "Order booking finish",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.worldota.net/api/b2b/v3/hotel/order/booking/finish/",
+            "body": {
+              "type": "json",
+              "data": "{\n  \"partner_order_id\": \"my-order-001\",\n  \"language\": \"en\",\n  \"user\": {\"email\": \"guest@example.com\", \"phone\": \"+10000000000\", \"comment\": \"\"},\n  \"rooms\": [{\"guests\": [{\"first_name\": \"John\", \"last_name\": \"Doe\"}]}],\n  \"payment_type\": {\"type\": \"deposit\", \"amount\": \"100.00\", \"currency_code\": \"EUR\"}\n}"
+            }
+          },
+          "docs": "Complete the reservation asynchronously."
+        },
+        {
+          "info": {
+            "name": "Order booking finish status",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.worldota.net/api/b2b/v3/hotel/order/booking/finish/status/",
+            "body": {
+              "type": "json",
+              "data": "{\n  \"partner_order_id\": \"my-order-001\"\n}"
+            }
+          },
+          "docs": "Poll until processing reaches ok or a final failure status."
+        },
+        {
+          "info": {
+            "name": "Order information",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.worldota.net/api/b2b/v3/hotel/order/info/",
+            "body": {
+              "type": "json",
+              "data": "{\n  \"search\": {\"partner_order_ids\": [\"my-order-001\"]}\n}"
+            }
+          },
+          "docs": "Retrieve a created order's information by partner booking identifier."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Cancellation",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Order cancellation",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.worldota.net/api/b2b/v3/hotel/order/cancel/",
+            "body": {
+              "type": "json",
+              "data": "{\n  \"partner_order_id\": \"my-order-001\"\n}"
+            }
+          },
+          "docs": "Cancel a booking by partner booking identifier."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Hotel Content",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Hotel data search (static content)",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.worldota.net/api/b2b/v3/hotel/info/",
+            "body": {
+              "type": "json",
+              "data": "{\n  \"id\": \"test_hotel\",\n  \"language\": \"en\"\n}"
+            }
+          },
+          "docs": "Static hotel content lookup by hotel identifier."
+        },
+        {
+          "info": {
+            "name": "Hotel data dump",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.worldota.net/api/b2b/v3/hotel/info/dump/",
+            "body": {
+              "type": "json",
+              "data": "{\n  \"language\": \"en\",\n  \"inventory\": \"all\"\n}"
+            }
+          },
+          "docs": "Daily archive of all available hotels' static data for one language."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Endpoints",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Endpoints overview",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.worldota.net/api/b2b/v3/overview/"
+          },
+          "docs": "List endpoints available for your contract and their settings."
+        }
+      ]
+    }
+  ]
+}

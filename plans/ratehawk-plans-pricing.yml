@@ -1,0 +1,104 @@
+specification: API Commons Plans
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/Plans
+provider: RateHawk
+providerId: ratehawk
+created: '2026-06-25'
+modified: '2026-06-25'
+reconciled: false
+tags:
+- Travel
+- Hotels
+- Booking
+- B2B
+- Reservations
+- Plans
+description: >-
+  RateHawk / Emerging Travel Group does not publish public per-call API
+  pricing. Access to the pAPI v3 is granted under a B2B partner contract:
+  partners book at negotiated net (wholesale) rates and ETG earns the margin
+  between net and sell price. Commercial terms, deposit / credit limits, and
+  any volume incentives are agreed per contract during onboarding. Test
+  (sandbox) keys are provided free for integration. Specific monetary rates
+  are not reconciled in this artifact because they are contracted and not
+  publicly listed.
+notes: >-
+  Contact RateHawk / ETG partnership team for net-rate terms, credit limits,
+  and settlement options. Pricing here is structural, not numeric, and must be
+  reconciled against the signed partner agreement.
+sources:
+- https://www.ratehawk.com/lp/en-us/API/
+- https://docs.emergingtravel.com/docs/integration-guide/
+- https://www.ratehawk.com/
+plans:
+- id: ratehawk-sandbox
+  name: Sandbox / Test
+  type: free
+  description: >-
+    Free test environment with test API keys for integration and
+    certification against the pAPI v3 before going live.
+  entries:
+  - label: Test API Access
+    name: sandbox
+    type: free
+    metric: requests
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: free (test environment)
+    userMultiplied: false
+  elements:
+  - name: Hotel Search
+  - name: Prebook
+  - name: Booking and Orders (test)
+  - name: Hotel Content
+- id: ratehawk-partner
+  name: B2B Partner (Net Rates)
+  type: contract
+  description: >-
+    Production access under a B2B partner contract. Partners book at
+    negotiated net rates; ETG margin is the spread between net and sell
+    price. Terms, deposits, and credit limits are agreed per contract.
+  entries:
+  - label: Net-Rate Booking
+    name: net_rate_booking
+    type: usage
+    metric: bookings
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: negotiated net rate per booking (contracted)
+    userMultiplied: false
+  elements:
+  - name: Hotel Search
+  - name: Prebook
+  - name: Booking and Orders
+  - name: Hotel Content
+  - name: Cancellation
+- id: ratehawk-enterprise
+  name: Enterprise / Strategic Partner
+  type: enterprise
+  description: >-
+    Negotiated terms for large OTAs, travel-tech platforms, and agency
+    chains - volume incentives, dedicated support, and custom integration.
+    Contact ETG sales.
+  entries:
+  - label: Enterprise Agreement
+    name: enterprise
+    type: flat
+    metric: contract
+    limit: -1
+    timeFrame: year
+    geo: global
+    unit: 1
+    price: contact sales
+    userMultiplied: false
+  elements:
+  - name: Custom Volume Terms
+  - name: Dedicated Support
+  - name: Direct Supply Access
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

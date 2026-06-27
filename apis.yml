@@ -1,0 +1,148 @@
+aid: ratehawk
+url: https://raw.githubusercontent.com/api-evangelist/ratehawk/refs/heads/main/apis.yml
+name: RateHawk
+kind: company
+description: RateHawk is the B2B hotel and travel booking brand of Emerging Travel
+  Group (ETG). Its Partner API (pAPI v3, served from api.worldota.net) gives OTAs,
+  travel platforms, and agencies programmatic access to 2.5M+ properties with net
+  rates, covering hotel search, prebook, the asynchronous order booking flow, static
+  hotel content, and cancellation over a JSON REST interface secured with HTTP Basic
+  auth.
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+tags:
+- Travel
+- Hotels
+- Booking
+- B2B
+- Reservations
+created: '2026-06-25'
+modified: '2026-06-25'
+specificationVersion: '0.19'
+apis:
+- aid: ratehawk:hotel-search
+  name: RateHawk Hotel Search API
+  tags:
+  - Hotel Search
+  - SERP
+  - Availability
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://docs.emergingtravel.com/docs/b2b-api/hotel-search/
+  baseURL: https://api.worldota.net/api/b2b/v3
+  properties:
+  - url: https://docs.emergingtravel.com/docs/b2b-api/hotel-search/
+    type: Documentation
+  - url: https://docs.emergingtravel.com/docs/b2b-api/endpoints/
+    type: APIReference
+  - url: openapi/ratehawk-openapi.yml
+    type: OpenAPI
+  - url: collections/ratehawk.postman_collection.json
+    type: PostmanCollection
+  - url: collections/ratehawk.opencollection.json
+    type: OpenCollection
+  description: Search Engine Results Page (SERP) endpoints returning available hotels
+    and rates by region, by hotel IDs (max 300), or by geo radius for the given
+    dates, occupancy, currency, and residency.
+- aid: ratehawk:hotel-page-prebook
+  name: RateHawk Hotel Page / Prebook API
+  tags:
+  - Hotel Page
+  - Prebook
+  - Rate Confirmation
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://docs.emergingtravel.com/docs/b2b-api/hotel-search/retrieve-hotelpage/
+  baseURL: https://api.worldota.net/api/b2b/v3
+  properties:
+  - url: https://docs.emergingtravel.com/docs/b2b-api/hotel-search/retrieve-hotelpage/
+    type: Documentation
+  - url: https://docs.emergingtravel.com/docs/b2b-api/hotel-search/prebook-rate-from-hotelpage-step/
+    type: APIReference
+  - url: openapi/ratehawk-openapi.yml
+    type: OpenAPI
+  - url: collections/ratehawk.postman_collection.json
+    type: PostmanCollection
+  - url: collections/ratehawk.opencollection.json
+    type: OpenCollection
+  description: Retrieve Hotelpage actualizes bookable rates and book_hash values for
+    a single chosen hotel, and Prebook revalidates availability and price for the
+    selected rate (with an optional price_increase_percent bound) before booking.
+- aid: ratehawk:order-booking
+  name: RateHawk Order Booking API
+  tags:
+  - Booking
+  - Orders
+  - Reservations
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://docs.emergingtravel.com/docs/b2b-api/booking/
+  baseURL: https://api.worldota.net/api/b2b/v3
+  properties:
+  - url: https://docs.emergingtravel.com/docs/b2b-api/booking/create-booking-process/
+    type: Documentation
+  - url: https://docs.emergingtravel.com/docs/b2b-api/booking/check-booking-process/
+    type: APIReference
+  - url: openapi/ratehawk-openapi.yml
+    type: OpenAPI
+  - url: collections/ratehawk.postman_collection.json
+    type: PostmanCollection
+  - url: collections/ratehawk.opencollection.json
+    type: OpenCollection
+  description: The asynchronous order booking flow - booking form, booking finish,
+    and booking finish status polling - plus order information retrieval and order
+    cancellation by the partner's booking identifier.
+- aid: ratehawk:hotel-content-static
+  name: RateHawk Hotel Content / Static API
+  tags:
+  - Static Content
+  - Hotel Data
+  - Dump
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://docs.emergingtravel.com/docs/b2b-api/static-content/
+  baseURL: https://api.worldota.net/api/b2b/v3
+  properties:
+  - url: https://docs.emergingtravel.com/docs/b2b-api/static-content/b2b-v3-hotel-info/
+    type: Documentation
+  - url: https://docs.emergingtravel.com/docs/b2b-api/static-content/retrieve-hotel-incremental-dump/
+    type: APIReference
+  - url: openapi/ratehawk-openapi.yml
+    type: OpenAPI
+  - url: collections/ratehawk.postman_collection.json
+    type: PostmanCollection
+  - url: collections/ratehawk.opencollection.json
+    type: OpenCollection
+  description: Static hotel content - address, amenities, descriptions, images,
+    metapolicy, room groups, and star rating - via per-hotel lookup plus full and
+    incremental hotel data dump archives used to build a local catalog.
+- aid: ratehawk:webhooks
+  name: RateHawk Webhooks
+  tags:
+  - Webhooks
+  - Notifications
+  - Events
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://docs.emergingtravel.com/docs/integration-guide/
+  baseURL: https://api.worldota.net/api/b2b/v3
+  properties:
+  - url: https://docs.emergingtravel.com/docs/integration-guide/
+    type: Documentation
+  - url: openapi/ratehawk-openapi.yml
+    type: OpenAPI
+  description: Asynchronous order status notifications delivered to a partner-registered
+    callback URL, used as an alternative to polling the booking finish status
+    endpoint for booking completion.
+common:
+- type: GitHubOrganization
+  url: https://github.com/EmergingTravel
+- type: LinkedIn
+  url: https://www.linkedin.com/company/ratehawk-com
+- type: Website
+  url: https://www.ratehawk.com
+- type: Documentation
+  url: https://docs.emergingtravel.com/
+- type: Plans
+  url: plans/ratehawk-plans-pricing.yml
+- type: RateLimits
+  url: rate-limits/ratehawk-rate-limits.yml
+- type: FinOps
+  url: finops/ratehawk-finops.yml
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

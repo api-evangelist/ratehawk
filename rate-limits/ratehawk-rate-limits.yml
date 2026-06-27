@@ -1,0 +1,66 @@
+specification: API Commons Rate Limits
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/RateLimits
+provider: RateHawk
+providerId: ratehawk
+created: '2026-06-25'
+modified: '2026-06-25'
+reconciled: false
+tags:
+- Travel
+- Hotels
+- Booking
+- B2B
+- Reservations
+- Rate Limiting
+- Quotas
+- Throttling
+description: >-
+  The RateHawk / ETG pAPI v3 applies per-contract rate limits and per-endpoint
+  settings that are returned to the partner via the Endpoints Overview call
+  (GET /overview/). Limits and allowed request rates vary by contract and by
+  endpoint (search vs. booking vs. content). ETG also recommends bounding the
+  number of concurrent search requests and respecting the per-request timeout
+  parameter. Specific numeric limits are issued per contract and are not
+  reconciled in this artifact.
+notes: >-
+  Pull the Endpoints Overview (/overview/) on reconciliation to read the
+  contract's enabled endpoints and their limits. Honor the request timeout
+  parameter on search calls and apply backoff on throttling.
+sources:
+- https://docs.emergingtravel.com/docs/best-practices-for-apiv3/
+- https://docs.emergingtravel.com/docs/b2b-api/endpoints/
+- https://docs.emergingtravel.com/docs/integration-guide/
+responseCodes:
+  throttled: 429
+limits:
+- name: Per-Endpoint Limits (Overview)
+  scope: contract
+  metric: requests
+  limit: see Endpoints Overview
+  notes: Enabled endpoints and their limits are returned by GET /overview/ per contract.
+- name: Search Concurrency
+  scope: contract
+  metric: concurrent_requests
+  limit: see provider documentation
+  notes: Bound concurrent SERP / hotelpage requests per ETG best practices.
+- name: Request Timeout
+  scope: request
+  metric: seconds
+  limit: per-request timeout parameter
+  notes: Search requests accept a timeout parameter that caps response wait time.
+- name: Booking Flow
+  scope: contract
+  metric: requests
+  limit: see provider documentation
+  notes: Booking form / finish / finish-status polling cadence governed by best-practice guidance.
+policies:
+- name: Contracted Limits
+  description: Limits are provisioned per partner contract and surfaced via the Endpoints Overview call.
+- name: Polling Strategy
+  description: Poll Order Booking Finish Status until processing reaches ok or a final failure status; avoid tight loops.
+- name: Backoff Strategy
+  description: Apply exponential backoff with jitter on throttling and transient errors.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

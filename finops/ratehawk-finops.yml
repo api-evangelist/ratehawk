@@ -1,0 +1,100 @@
+specification: FinOps Framework
+specificationVersion: '1.0'
+schema: https://www.finops.org/framework/
+provider: RateHawk
+providerId: ratehawk
+created: '2026-06-25'
+modified: '2026-06-25'
+reconciled: false
+tags:
+- Travel
+- Hotels
+- Booking
+- B2B
+- Reservations
+- FinOps
+- Cost Management
+- FOCUS
+description: >-
+  FinOps view of RateHawk / ETG pAPI v3 spend. Unlike metered API products,
+  cost here is the booked travel inventory: partners pay negotiated net
+  (wholesale) rates per confirmed hotel booking and settle under contracted
+  deposit / credit terms, while ETG earns the net-to-sell margin. There is no
+  public per-call API charge; the unit of spend is the confirmed reservation
+  (and any cancellation charges on non-refundable rates). Numeric rates are
+  contracted, so this artifact is not reconciled to specific amounts.
+notes: >-
+  Reconcile against the signed partner agreement and ETG settlement
+  statements. Track spend per confirmed booking, currency, and cancellation
+  charges rather than per API request.
+sources:
+- https://www.ratehawk.com/lp/en-us/API/
+- https://docs.emergingtravel.com/docs/integration-guide/
+- https://focus.finops.org/focus-specification/v1-3/
+alignedWith:
+  framework: FinOps Foundation Framework
+  frameworkUrl: https://www.finops.org/framework/
+  dataSpec: FOCUS
+  dataSpecVersion: '1.3'
+  dataSpecUrl: https://focus.finops.org/focus-specification/v1-3/
+publisherName: Emerging Travel Group
+serviceCategory: Travel and Booking
+billingModel:
+  pricingCategory: Net-Rate / Wholesale
+  billingFrequency: Per Settlement Cycle
+  billingCurrency: Multi-currency
+  chargeCategories:
+  - Usage
+  - Refund
+  - Adjustment
+focusColumns:
+  ServiceName: RateHawk pAPI v3
+  ServiceCategory: Travel and Booking
+  ProviderName: RateHawk
+  PublisherName: Emerging Travel Group
+  InvoiceIssuerName: Emerging Travel Group
+  BillingCurrency: Multi-currency
+  ChargeCategory: Usage
+  PricingCategory: Net-Rate / Wholesale
+meters:
+- name: confirmed_bookings
+  description: Confirmed hotel reservations billed at the contracted net rate.
+  unit: bookings
+  aggregation: sum
+  dimensions:
+  - contract
+  - hotel
+  - currency
+- name: booking_amount
+  description: Net amount payable per confirmed booking in the booking currency.
+  unit: currency
+  aggregation: sum
+  dimensions:
+  - contract
+  - currency
+- name: cancellation_charges
+  description: Charges applied when cancelling non-refundable or partially refundable rates.
+  unit: currency
+  aggregation: sum
+  dimensions:
+  - contract
+  - currency
+- name: upsell_charges
+  description: Optional upsell costs (early check-in / late check-out) added to a booking.
+  unit: currency
+  aggregation: sum
+  dimensions:
+  - contract
+  - currency
+principles:
+- name: Visibility
+  description: Reconcile ETG settlement statements; track net spend per booking, currency, and cancellation.
+- name: Allocation
+  description: Tag bookings by partner_order_id and internal cost center / brand.
+- name: Optimization
+  description: Use Prebook to actualize rates before booking; prefer refundable rates where margin allows; avoid cancellation charges on non-refundable inventory.
+- name: Accountability
+  description: Assign owners per contract and review booked spend and cancellation losses each settlement cycle.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com
