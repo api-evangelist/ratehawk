@@ -129,6 +129,10 @@ apis:
     callback URL, used as an alternative to polling the booking finish status
     endpoint for booking completion.
 common:
+- type: DomainSecurity
+  url: security/ratehawk-domain-security.yml
+- type: Authentication
+  url: authentication/ratehawk-authentication.yml
 - type: GitHubOrganization
   url: https://github.com/EmergingTravel
 - type: LinkedIn
@@ -143,6 +147,8 @@ common:
   url: rate-limits/ratehawk-rate-limits.yml
 - type: FinOps
   url: finops/ratehawk-finops.yml
+- type: Blog
+  url: https://blog.ratehawk.com/feed/
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com

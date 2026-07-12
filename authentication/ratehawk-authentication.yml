@@ -1,0 +1,14 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/ratehawk-openapi.yml
+summary:
+  types:
+  - http
+schemes:
+- name: basicAuth
+  type: http
+  scheme: basic
+  description: HTTP Basic authentication. The username is the API key id and the password is
+    the API key (uuid). Both are issued per contract for the test (sandbox) and production environments.
+  sources:
+  - openapi/ratehawk-openapi.yml

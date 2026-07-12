@@ -1,0 +1,33 @@
+generated: '2026-07-11'
+method: probed
+source: live DNS/TLS/HTTP probes of apis.yml + OpenAPI hosts
+hosts:
+- host: www.ratehawk.com
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Oct  6 15:32:51 2026 GMT
+  hsts: true
+  hsts_max_age: 2592000
+- host: docs.emergingtravel.com
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Oct  1 11:27:15 2026 GMT
+  hsts: false
+- host: api.worldota.net
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Feb 23 09:17:17 2027 GMT
+  hsts: false
+domains:
+- domain: ratehawk.com
+  dnssec: false
+  caa: []
+  spf: true
+  dmarc: true
+  dmarc_policy: reject
+- domain: emergingtravel.com
+  dnssec: false
+  caa: []
+  spf: true
+  dmarc: true
+  dmarc_policy: reject
