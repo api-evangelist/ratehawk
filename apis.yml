@@ -129,6 +129,8 @@ apis:
     callback URL, used as an alternative to polling the booking finish status
     endpoint for booking completion.
 common:
+- type: AgenticAccess
+  url: agentic-access/ratehawk-agentic-access.yml
 - type: DomainSecurity
   url: security/ratehawk-domain-security.yml
 - type: Authentication
