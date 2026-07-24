@@ -1,0 +1,72 @@
+openapi: 3.0.1
+info:
+  title: RateHawk / ETG API (WorldOta APIv3) Booking Prebook API
+  description: B2B hotel and travel booking API operated by Emerging Travel Group (ETG) and exposed to partners as the RateHawk API. The Partner API (pAPI) v3 covers hotel search (SERP by region, hotels, and geo), hotelpage rate actualization, prebook, the asynchronous order booking flow (form, finish, finish status), order information, cancellation, and static hotel content. All endpoints are HTTP POST that accept and return JSON and authenticate with HTTP Basic using a key id (username) and key (password).
+  termsOfService: https://www.ratehawk.com/
+  contact:
+    name: ETG API Support
+    url: https://docs.emergingtravel.com/
+  version: '3.0'
+servers:
+- url: https://api.worldota.net/api/b2b/v3
+  description: Production
+- url: https://api-sandbox.worldota.net/api/b2b/v3
+  description: Sandbox / test
+security:
+- basicAuth: []
+tags:
+- name: Prebook
+paths:
+  /hotel/prebook/:
+    post:
+      operationId: hotelPrebook
+      tags:
+      - Prebook
+      summary: Prebook rate from hotelpage step
+      description: Updates the availability and price of the requested rate and attempts to find a comparable or similar rate if the original is unavailable. Use price_increase_percent to bound how much higher the new price may be than the original.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PrebookRequest'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BaseResponse'
+components:
+  schemas:
+    PrebookRequest:
+      type: object
+      required:
+      - hash
+      properties:
+        hash:
+          type: string
+          description: book_hash of the rate selected on the hotelpage step.
+        price_increase_percent:
+          type: integer
+          description: Maximum percent the actualized price may exceed the original price.
+    BaseResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          description: ok or error.
+        error:
+          type: string
+          nullable: true
+        debug:
+          type: object
+          nullable: true
+        data:
+          type: object
+          nullable: true
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+      description: HTTP Basic authentication. The username is the API key id and the password is the API key (uuid). Both are issued per contract for the test (sandbox) and production environments.

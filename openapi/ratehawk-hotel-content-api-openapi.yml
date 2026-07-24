@@ -1,0 +1,148 @@
+openapi: 3.0.1
+info:
+  title: RateHawk / ETG API (WorldOta APIv3) Booking Hotel Content API
+  description: B2B hotel and travel booking API operated by Emerging Travel Group (ETG) and exposed to partners as the RateHawk API. The Partner API (pAPI) v3 covers hotel search (SERP by region, hotels, and geo), hotelpage rate actualization, prebook, the asynchronous order booking flow (form, finish, finish status), order information, cancellation, and static hotel content. All endpoints are HTTP POST that accept and return JSON and authenticate with HTTP Basic using a key id (username) and key (password).
+  termsOfService: https://www.ratehawk.com/
+  contact:
+    name: ETG API Support
+    url: https://docs.emergingtravel.com/
+  version: '3.0'
+servers:
+- url: https://api.worldota.net/api/b2b/v3
+  description: Production
+- url: https://api-sandbox.worldota.net/api/b2b/v3
+  description: Sandbox / test
+security:
+- basicAuth: []
+tags:
+- name: Hotel Content
+paths:
+  /hotel/info/:
+    post:
+      operationId: hotelInfo
+      tags:
+      - Hotel Content
+      summary: Hotel data search (static content)
+      description: Static hotel content lookup by hotel identifier, including address, amenities, descriptions, images, metapolicy, room groups, and star rating. Used to fill gaps not present in the hotel data dump.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/HotelInfoRequest'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HotelInfoResponse'
+  /hotel/info/dump/:
+    post:
+      operationId: hotelInfoDump
+      tags:
+      - Hotel Content
+      summary: Hotel data dump
+      description: Returns a URL to the archive of all available ETG hotels' static data for one language. The dump is regenerated daily.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/HotelInfoDumpRequest'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BaseResponse'
+components:
+  schemas:
+    BaseResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          description: ok or error.
+        error:
+          type: string
+          nullable: true
+        debug:
+          type: object
+          nullable: true
+        data:
+          type: object
+          nullable: true
+    HotelInfoRequest:
+      type: object
+      required:
+      - id
+      - language
+      properties:
+        id:
+          type: string
+        language:
+          type: string
+    HotelInfoDumpRequest:
+      type: object
+      required:
+      - language
+      properties:
+        language:
+          type: string
+        inventory:
+          type: string
+    Region:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        country_code:
+          type: string
+        iata:
+          type: string
+        type:
+          type: string
+    HotelInfoResponse:
+      type: object
+      properties:
+        status:
+          type: string
+        error:
+          type: string
+          nullable: true
+        data:
+          $ref: '#/components/schemas/HotelInfoData'
+    HotelInfoData:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        address:
+          type: string
+        latitude:
+          type: number
+        longitude:
+          type: number
+        star_rating:
+          type: integer
+        kind:
+          type: string
+        images:
+          type: array
+          items:
+            type: string
+        region:
+          $ref: '#/components/schemas/Region'
+        is_closed:
+          type: boolean
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+      description: HTTP Basic authentication. The username is the API key id and the password is the API key (uuid). Both are issued per contract for the test (sandbox) and production environments.

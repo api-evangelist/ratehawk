@@ -1,0 +1,167 @@
+openapi: 3.0.1
+info:
+  title: RateHawk / ETG API (WorldOta APIv3) Booking API
+  description: B2B hotel and travel booking API operated by Emerging Travel Group (ETG) and exposed to partners as the RateHawk API. The Partner API (pAPI) v3 covers hotel search (SERP by region, hotels, and geo), hotelpage rate actualization, prebook, the asynchronous order booking flow (form, finish, finish status), order information, cancellation, and static hotel content. All endpoints are HTTP POST that accept and return JSON and authenticate with HTTP Basic using a key id (username) and key (password).
+  termsOfService: https://www.ratehawk.com/
+  contact:
+    name: ETG API Support
+    url: https://docs.emergingtravel.com/
+  version: '3.0'
+servers:
+- url: https://api.worldota.net/api/b2b/v3
+  description: Production
+- url: https://api-sandbox.worldota.net/api/b2b/v3
+  description: Sandbox / test
+security:
+- basicAuth: []
+tags:
+- name: Booking
+paths:
+  /hotel/order/booking/form/:
+    post:
+      operationId: orderBookingForm
+      tags:
+      - Booking
+      summary: Create booking process (order booking form)
+      description: Creates a new reservation process from a prebooked rate's book_hash. The process of reserving a rate includes several stages depending on whether 3-D Secure and/or fraud checks are required.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OrderBookingFormRequest'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BaseResponse'
+  /hotel/order/booking/finish/:
+    post:
+      operationId: orderBookingFinish
+      tags:
+      - Booking
+      summary: Order booking finish
+      description: 'Completes the reservation. The reservation is carried out asynchronously: the partner launches the process via this call and then repeatedly polls Order Booking Finish Status.'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OrderBookingFinishRequest'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BaseResponse'
+  /hotel/order/booking/finish/status/:
+    post:
+      operationId: orderBookingFinishStatus
+      tags:
+      - Booking
+      summary: Order booking finish status
+      description: Status check for the asynchronous order completion process. Poll this endpoint until processing changes to ok or a final failure status.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OrderBookingFinishStatusRequest'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BaseResponse'
+components:
+  schemas:
+    OrderBookingFinishRequest:
+      type: object
+      required:
+      - partner_order_id
+      - user
+      - rooms
+      - payment_type
+      properties:
+        partner_order_id:
+          type: string
+        language:
+          type: string
+        user:
+          type: object
+          properties:
+            email:
+              type: string
+            phone:
+              type: string
+            comment:
+              type: string
+        rooms:
+          type: array
+          items:
+            type: object
+            properties:
+              guests:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    first_name:
+                      type: string
+                    last_name:
+                      type: string
+        payment_type:
+          type: object
+          properties:
+            type:
+              type: string
+            amount:
+              type: string
+            currency_code:
+              type: string
+    BaseResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          description: ok or error.
+        error:
+          type: string
+          nullable: true
+        debug:
+          type: object
+          nullable: true
+        data:
+          type: object
+          nullable: true
+    OrderBookingFormRequest:
+      type: object
+      required:
+      - partner_order_id
+      - book_hash
+      properties:
+        partner_order_id:
+          type: string
+          description: Unique partner booking identifier.
+        book_hash:
+          type: string
+        language:
+          type: string
+        user_ip:
+          type: string
+    OrderBookingFinishStatusRequest:
+      type: object
+      required:
+      - partner_order_id
+      properties:
+        partner_order_id:
+          type: string
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+      description: HTTP Basic authentication. The username is the API key id and the password is the API key (uuid). Both are issued per contract for the test (sandbox) and production environments.

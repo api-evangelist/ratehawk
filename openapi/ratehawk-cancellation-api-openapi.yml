@@ -1,0 +1,71 @@
+openapi: 3.0.1
+info:
+  title: RateHawk / ETG API (WorldOta APIv3) Booking Cancellation API
+  description: B2B hotel and travel booking API operated by Emerging Travel Group (ETG) and exposed to partners as the RateHawk API. The Partner API (pAPI) v3 covers hotel search (SERP by region, hotels, and geo), hotelpage rate actualization, prebook, the asynchronous order booking flow (form, finish, finish status), order information, cancellation, and static hotel content. All endpoints are HTTP POST that accept and return JSON and authenticate with HTTP Basic using a key id (username) and key (password).
+  termsOfService: https://www.ratehawk.com/
+  contact:
+    name: ETG API Support
+    url: https://docs.emergingtravel.com/
+  version: '3.0'
+servers:
+- url: https://api.worldota.net/api/b2b/v3
+  description: Production
+- url: https://api-sandbox.worldota.net/api/b2b/v3
+  description: Sandbox / test
+security:
+- basicAuth: []
+tags:
+- name: Cancellation
+paths:
+  /hotel/order/cancel/:
+    post:
+      operationId: orderCancel
+      tags:
+      - Cancellation
+      summary: Order cancellation
+      description: Cancels a booking by the partner's booking identifier. Relevant for reservations with completed / rejected status; allows cancellation of non-refundable bookings with applicable charges.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OrderCancelRequest'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BaseResponse'
+components:
+  schemas:
+    BaseResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          description: ok or error.
+        error:
+          type: string
+          nullable: true
+        debug:
+          type: object
+          nullable: true
+        data:
+          type: object
+          nullable: true
+    OrderCancelRequest:
+      type: object
+      required:
+      - partner_order_id
+      properties:
+        partner_order_id:
+          type: string
+          minLength: 1
+          maxLength: 256
+          description: Unique partner booking identifier.
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+      description: HTTP Basic authentication. The username is the API key id and the password is the API key (uuid). Both are issued per contract for the test (sandbox) and production environments.

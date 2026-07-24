@@ -1,0 +1,213 @@
+openapi: 3.0.1
+info:
+  title: RateHawk / ETG API (WorldOta APIv3) Booking Hotel Search API
+  description: B2B hotel and travel booking API operated by Emerging Travel Group (ETG) and exposed to partners as the RateHawk API. The Partner API (pAPI) v3 covers hotel search (SERP by region, hotels, and geo), hotelpage rate actualization, prebook, the asynchronous order booking flow (form, finish, finish status), order information, cancellation, and static hotel content. All endpoints are HTTP POST that accept and return JSON and authenticate with HTTP Basic using a key id (username) and key (password).
+  termsOfService: https://www.ratehawk.com/
+  contact:
+    name: ETG API Support
+    url: https://docs.emergingtravel.com/
+  version: '3.0'
+servers:
+- url: https://api.worldota.net/api/b2b/v3
+  description: Production
+- url: https://api-sandbox.worldota.net/api/b2b/v3
+  description: Sandbox / test
+security:
+- basicAuth: []
+tags:
+- name: Hotel Search
+paths:
+  /search/serp/region/:
+    post:
+      operationId: searchRegion
+      tags:
+      - Hotel Search
+      summary: Search Engine Results Page by region
+      description: Preliminary search (SERP) for hotels with available accommodation within a region that matches the given search conditions.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RegionSearchRequest'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SearchResponse'
+  /search/serp/hotels/:
+    post:
+      operationId: searchHotels
+      tags:
+      - Hotel Search
+      summary: Search Engine Results Page by hotel IDs
+      description: Preliminary search (SERP) for a specific set of hotels by their identifiers matching the given search conditions.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/HotelsSearchRequest'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SearchResponse'
+  /search/serp/geo/:
+    post:
+      operationId: searchGeo
+      tags:
+      - Hotel Search
+      summary: Search Engine Results Page by geo coordinates
+      description: Preliminary search (SERP) for hotels within a radius of the given latitude and longitude.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GeoSearchRequest'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SearchResponse'
+  /search/hp/:
+    post:
+      operationId: searchHotelPage
+      tags:
+      - Hotel Search
+      summary: Retrieve hotelpage
+      description: Hotel rates actualization for a single hotel. Should be requested only after the user has chosen the hotel; returns the up-to-date set of bookable rates with their book_hash values.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/HotelPageRequest'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SearchResponse'
+components:
+  schemas:
+    HotelPageRequest:
+      allOf:
+      - $ref: '#/components/schemas/BaseSearchRequest'
+      - type: object
+        required:
+        - id
+        properties:
+          id:
+            type: string
+            description: Hotel identifier.
+    SearchResponse:
+      type: object
+      properties:
+        status:
+          type: string
+        error:
+          type: string
+          nullable: true
+        data:
+          type: object
+          properties:
+            hotels:
+              type: array
+              items:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  rates:
+                    type: array
+                    items:
+                      type: object
+            total_hotels:
+              type: integer
+    HotelsSearchRequest:
+      allOf:
+      - $ref: '#/components/schemas/BaseSearchRequest'
+      - type: object
+        required:
+        - ids
+        properties:
+          ids:
+            type: array
+            items:
+              type: string
+    BaseSearchRequest:
+      type: object
+      required:
+      - checkin
+      - checkout
+      - guests
+      properties:
+        checkin:
+          type: string
+          format: date
+        checkout:
+          type: string
+          format: date
+        currency:
+          type: string
+        residency:
+          type: string
+        language:
+          type: string
+        timeout:
+          type: integer
+        guests:
+          type: array
+          items:
+            $ref: '#/components/schemas/GuestsGroup'
+    RegionSearchRequest:
+      allOf:
+      - $ref: '#/components/schemas/BaseSearchRequest'
+      - type: object
+        required:
+        - region_id
+        properties:
+          region_id:
+            type: integer
+    GuestsGroup:
+      type: object
+      required:
+      - adults
+      properties:
+        adults:
+          type: integer
+        children:
+          type: array
+          items:
+            type: integer
+    GeoSearchRequest:
+      allOf:
+      - $ref: '#/components/schemas/BaseSearchRequest'
+      - type: object
+        required:
+        - latitude
+        - longitude
+        - radius
+        properties:
+          latitude:
+            type: number
+            format: float
+          longitude:
+            type: number
+            format: float
+          radius:
+            type: integer
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+      description: HTTP Basic authentication. The username is the API key id and the password is the API key (uuid). Both are issued per contract for the test (sandbox) and production environments.
