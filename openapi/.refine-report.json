@@ -1,0 +1,24 @@
+{
+  "provider": "ratehawk",
+  "sources": [
+    "ratehawk-booking-api-openapi.yml",
+    "ratehawk-cancellation-api-openapi.yml",
+    "ratehawk-hotel-content-api-openapi.yml",
+    "ratehawk-hotel-search-api-openapi.yml",
+    "ratehawk-orders-api-openapi.yml",
+    "ratehawk-prebook-api-openapi.yml"
+  ],
+  "outputs": [
+    "ratehawk-booking-api-openapi.yml",
+    "ratehawk-cancellation-api-openapi.yml",
+    "ratehawk-hotel-content-api-openapi.yml",
+    "ratehawk-hotel-search-api-openapi.yml",
+    "ratehawk-orders-api-openapi.yml",
+    "ratehawk-prebook-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
