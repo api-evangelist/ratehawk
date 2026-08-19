@@ -1,0 +1,463 @@
+{
+  "item": [
+    {
+      "id": "b7a18818-9abf-45ce-8fe2-48cf0c6e8bea",
+      "name": "Hotel Search",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "fec8d216-8457-44e8-a4e5-b0da09e98c65",
+          "name": "Search Engine Results Page by region",
+          "request": {
+            "name": "Search Engine Results Page by region",
+            "description": {
+              "content": "Preliminary search (SERP) for hotels with available accommodation within a region that matches the given search conditions.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "search",
+                "serp",
+                "region",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"checkin\": \"<date>\",\n  \"checkout\": \"<date>\",\n  \"guests\": [\n    {\n      \"adults\": \"<integer>\",\n      \"children\": [\n        \"<integer>\",\n        \"<integer>\"\n      ]\n    },\n    {\n      \"adults\": \"<integer>\",\n      \"children\": [\n        \"<integer>\",\n        \"<integer>\"\n      ]\n    }\n  ],\n  \"region_id\": \"<integer>\",\n  \"currency\": \"<string>\",\n  \"residency\": \"<string>\",\n  \"language\": \"<string>\",\n  \"timeout\": \"<integer>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "713e4539-8d16-4425-ba16-2a58e836dfa9",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "search",
+                    "serp",
+                    "region",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"checkin\": \"<date>\",\n  \"checkout\": \"<date>\",\n  \"guests\": [\n    {\n      \"adults\": \"<integer>\",\n      \"children\": [\n        \"<integer>\",\n        \"<integer>\"\n      ]\n    },\n    {\n      \"adults\": \"<integer>\",\n      \"children\": [\n        \"<integer>\",\n        \"<integer>\"\n      ]\n    }\n  ],\n  \"region_id\": \"<integer>\",\n  \"currency\": \"<string>\",\n  \"residency\": \"<string>\",\n  \"language\": \"<string>\",\n  \"timeout\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"string\",\n  \"error\": \"string\",\n  \"data\": {\n    \"hotels\": [\n      {\n        \"id\": \"string\"\n      },\n      {\n        \"id\": \"string\"\n      }\n    ],\n    \"total_hotels\": 6946\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "cf8f86c5-19ca-4aa3-b893-331f2d53a4cb",
+          "name": "Search Engine Results Page by hotel IDs",
+          "request": {
+            "name": "Search Engine Results Page by hotel IDs",
+            "description": {
+              "content": "Preliminary search (SERP) for a specific set of hotels by their identifiers matching the given search conditions.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "search",
+                "serp",
+                "hotels",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"checkin\": \"<date>\",\n  \"checkout\": \"<date>\",\n  \"guests\": [\n    {\n      \"adults\": \"<integer>\",\n      \"children\": [\n        \"<integer>\",\n        \"<integer>\"\n      ]\n    },\n    {\n      \"adults\": \"<integer>\",\n      \"children\": [\n        \"<integer>\",\n        \"<integer>\"\n      ]\n    }\n  ],\n  \"ids\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"currency\": \"<string>\",\n  \"residency\": \"<string>\",\n  \"language\": \"<string>\",\n  \"timeout\": \"<integer>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "ddf40554-fcc6-4782-a1c0-4513759a9654",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "search",
+                    "serp",
+                    "hotels",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"checkin\": \"<date>\",\n  \"checkout\": \"<date>\",\n  \"guests\": [\n    {\n      \"adults\": \"<integer>\",\n      \"children\": [\n        \"<integer>\",\n        \"<integer>\"\n      ]\n    },\n    {\n      \"adults\": \"<integer>\",\n      \"children\": [\n        \"<integer>\",\n        \"<integer>\"\n      ]\n    }\n  ],\n  \"ids\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"currency\": \"<string>\",\n  \"residency\": \"<string>\",\n  \"language\": \"<string>\",\n  \"timeout\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"string\",\n  \"error\": \"string\",\n  \"data\": {\n    \"hotels\": [\n      {\n        \"id\": \"string\"\n      },\n      {\n        \"id\": \"string\"\n      }\n    ],\n    \"total_hotels\": 3888\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "64879d5b-26f6-4821-bcb1-0b4f09cffeb8",
+          "name": "Search Engine Results Page by geo coordinates",
+          "request": {
+            "name": "Search Engine Results Page by geo coordinates",
+            "description": {
+              "content": "Preliminary search (SERP) for hotels within a radius of the given latitude and longitude.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "search",
+                "serp",
+                "geo",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"checkin\": \"<date>\",\n  \"checkout\": \"<date>\",\n  \"guests\": [\n    {\n      \"adults\": \"<integer>\",\n      \"children\": [\n        \"<integer>\",\n        \"<integer>\"\n      ]\n    },\n    {\n      \"adults\": \"<integer>\",\n      \"children\": [\n        \"<integer>\",\n        \"<integer>\"\n      ]\n    }\n  ],\n  \"latitude\": \"<float>\",\n  \"longitude\": \"<float>\",\n  \"radius\": \"<integer>\",\n  \"currency\": \"<string>\",\n  \"residency\": \"<string>\",\n  \"language\": \"<string>\",\n  \"timeout\": \"<integer>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "8bcde270-63ad-4b9d-a37e-56ac7d2c7650",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "search",
+                    "serp",
+                    "geo",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"checkin\": \"<date>\",\n  \"checkout\": \"<date>\",\n  \"guests\": [\n    {\n      \"adults\": \"<integer>\",\n      \"children\": [\n        \"<integer>\",\n        \"<integer>\"\n      ]\n    },\n    {\n      \"adults\": \"<integer>\",\n      \"children\": [\n        \"<integer>\",\n        \"<integer>\"\n      ]\n    }\n  ],\n  \"latitude\": \"<float>\",\n  \"longitude\": \"<float>\",\n  \"radius\": \"<integer>\",\n  \"currency\": \"<string>\",\n  \"residency\": \"<string>\",\n  \"language\": \"<string>\",\n  \"timeout\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"string\",\n  \"error\": \"string\",\n  \"data\": {\n    \"hotels\": [\n      {\n        \"id\": \"string\"\n      },\n      {\n        \"id\": \"string\"\n      }\n    ],\n    \"total_hotels\": 3888\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f8bfcb48-9512-43de-9bea-71a3594f0293",
+          "name": "Retrieve hotelpage",
+          "request": {
+            "name": "Retrieve hotelpage",
+            "description": {
+              "content": "Hotel rates actualization for a single hotel. Should be requested only after the user has chosen the hotel; returns the up-to-date set of bookable rates with their book_hash values.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "search",
+                "hp",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"checkin\": \"<date>\",\n  \"checkout\": \"<date>\",\n  \"guests\": [\n    {\n      \"adults\": \"<integer>\",\n      \"children\": [\n        \"<integer>\",\n        \"<integer>\"\n      ]\n    },\n    {\n      \"adults\": \"<integer>\",\n      \"children\": [\n        \"<integer>\",\n        \"<integer>\"\n      ]\n    }\n  ],\n  \"id\": \"<string>\",\n  \"currency\": \"<string>\",\n  \"residency\": \"<string>\",\n  \"language\": \"<string>\",\n  \"timeout\": \"<integer>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "ac3a6fdb-56af-4b12-96c3-a9c7bc54695b",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "search",
+                    "hp",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"checkin\": \"<date>\",\n  \"checkout\": \"<date>\",\n  \"guests\": [\n    {\n      \"adults\": \"<integer>\",\n      \"children\": [\n        \"<integer>\",\n        \"<integer>\"\n      ]\n    },\n    {\n      \"adults\": \"<integer>\",\n      \"children\": [\n        \"<integer>\",\n        \"<integer>\"\n      ]\n    }\n  ],\n  \"id\": \"<string>\",\n  \"currency\": \"<string>\",\n  \"residency\": \"<string>\",\n  \"language\": \"<string>\",\n  \"timeout\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"string\",\n  \"error\": \"string\",\n  \"data\": {\n    \"hotels\": [\n      {\n        \"id\": \"string\"\n      },\n      {\n        \"id\": \"string\"\n      }\n    ],\n    \"total_hotels\": 3888\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.worldota.net/api/b2b/v3",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "a83761d8-b5e8-45b9-91cc-91ac43e3ebdb",
+    "name": "RateHawk / ETG API (WorldOta APIv3) Booking Hotel Search API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "B2B hotel and travel booking API operated by Emerging Travel Group (ETG) and exposed to partners as the RateHawk API. The Partner API (pAPI) v3 covers hotel search (SERP by region, hotels, and geo), hotelpage rate actualization, prebook, the asynchronous order booking flow (form, finish, finish status), order information, cancellation, and static hotel content. All endpoints are HTTP POST that accept and return JSON and authenticate with HTTP Basic using a key id (username) and key (password).\n\nContact Support:\n Name: ETG API Support",
+      "type": "text/plain"
+    }
+  }
+}

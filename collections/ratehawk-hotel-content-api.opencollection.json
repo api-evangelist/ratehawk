@@ -1,0 +1,55 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "RateHawk / ETG API (WorldOta APIv3) Booking Hotel Content API",
+    "version": "3.0"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Hotel Content",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Hotel data search (static content)",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.worldota.net/api/b2b/v3/hotel/info/",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Static hotel content lookup by hotel identifier, including address, amenities, descriptions, images, metapolicy, room groups, and star rating. Used to fill gaps not present in the hotel data dump."
+        },
+        {
+          "info": {
+            "name": "Hotel data dump",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.worldota.net/api/b2b/v3/hotel/info/dump/",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Returns a URL to the archive of all available ETG hotels' static data for one language. The dump is regenerated daily."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

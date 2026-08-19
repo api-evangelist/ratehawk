@@ -1,0 +1,368 @@
+{
+  "item": [
+    {
+      "id": "fd31d71f-d8b3-4afd-a65c-e130d201f772",
+      "name": "Booking",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "d3750968-b918-4d60-a25c-32a50ea8d3ee",
+          "name": "Create booking process (order booking form)",
+          "request": {
+            "name": "Create booking process (order booking form)",
+            "description": {
+              "content": "Creates a new reservation process from a prebooked rate's book_hash. The process of reserving a rate includes several stages depending on whether 3-D Secure and/or fraud checks are required.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "hotel",
+                "order",
+                "booking",
+                "form",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"partner_order_id\": \"<string>\",\n  \"book_hash\": \"<string>\",\n  \"language\": \"<string>\",\n  \"user_ip\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "badbc057-7eb9-4340-b49d-ce71adc5c4f7",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "hotel",
+                    "order",
+                    "booking",
+                    "form",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"partner_order_id\": \"<string>\",\n  \"book_hash\": \"<string>\",\n  \"language\": \"<string>\",\n  \"user_ip\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"string\",\n  \"error\": \"string\",\n  \"debug\": {},\n  \"data\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "02de9b58-cf5e-4035-b6a2-7f9b062b1ab1",
+          "name": "Order booking finish",
+          "request": {
+            "name": "Order booking finish",
+            "description": {
+              "content": "Completes the reservation. The reservation is carried out asynchronously: the partner launches the process via this call and then repeatedly polls Order Booking Finish Status.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "hotel",
+                "order",
+                "booking",
+                "finish",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"partner_order_id\": \"<string>\",\n  \"user\": {\n    \"email\": \"<string>\",\n    \"phone\": \"<string>\",\n    \"comment\": \"<string>\"\n  },\n  \"rooms\": [\n    {\n      \"guests\": [\n        {\n          \"first_name\": \"<string>\",\n          \"last_name\": \"<string>\"\n        },\n        {\n          \"first_name\": \"<string>\",\n          \"last_name\": \"<string>\"\n        }\n      ]\n    },\n    {\n      \"guests\": [\n        {\n          \"first_name\": \"<string>\",\n          \"last_name\": \"<string>\"\n        },\n        {\n          \"first_name\": \"<string>\",\n          \"last_name\": \"<string>\"\n        }\n      ]\n    }\n  ],\n  \"payment_type\": {\n    \"type\": \"<string>\",\n    \"amount\": \"<string>\",\n    \"currency_code\": \"<string>\"\n  },\n  \"language\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "3a03845d-39bc-498d-8ce8-e20620f86cdd",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "hotel",
+                    "order",
+                    "booking",
+                    "finish",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"partner_order_id\": \"<string>\",\n  \"user\": {\n    \"email\": \"<string>\",\n    \"phone\": \"<string>\",\n    \"comment\": \"<string>\"\n  },\n  \"rooms\": [\n    {\n      \"guests\": [\n        {\n          \"first_name\": \"<string>\",\n          \"last_name\": \"<string>\"\n        },\n        {\n          \"first_name\": \"<string>\",\n          \"last_name\": \"<string>\"\n        }\n      ]\n    },\n    {\n      \"guests\": [\n        {\n          \"first_name\": \"<string>\",\n          \"last_name\": \"<string>\"\n        },\n        {\n          \"first_name\": \"<string>\",\n          \"last_name\": \"<string>\"\n        }\n      ]\n    }\n  ],\n  \"payment_type\": {\n    \"type\": \"<string>\",\n    \"amount\": \"<string>\",\n    \"currency_code\": \"<string>\"\n  },\n  \"language\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"string\",\n  \"error\": \"string\",\n  \"debug\": {},\n  \"data\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "86064c56-b77d-4fd9-86fb-e657d4137d99",
+          "name": "Order booking finish status",
+          "request": {
+            "name": "Order booking finish status",
+            "description": {
+              "content": "Status check for the asynchronous order completion process. Poll this endpoint until processing changes to ok or a final failure status.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "hotel",
+                "order",
+                "booking",
+                "finish",
+                "status",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"partner_order_id\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "86fd1b0d-a9d3-40a2-95a7-ad166a3932b9",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "hotel",
+                    "order",
+                    "booking",
+                    "finish",
+                    "status",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"partner_order_id\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"string\",\n  \"error\": \"string\",\n  \"debug\": {},\n  \"data\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.worldota.net/api/b2b/v3",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "65ee917a-0706-4ce5-b777-c21aac42b59b",
+    "name": "RateHawk / ETG API (WorldOta APIv3) Booking API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "B2B hotel and travel booking API operated by Emerging Travel Group (ETG) and exposed to partners as the RateHawk API. The Partner API (pAPI) v3 covers hotel search (SERP by region, hotels, and geo), hotelpage rate actualization, prebook, the asynchronous order booking flow (form, finish, finish status), order information, cancellation, and static hotel content. All endpoints are HTTP POST that accept and return JSON and authenticate with HTTP Basic using a key id (username) and key (password).\n\nContact Support:\n Name: ETG API Support",
+      "type": "text/plain"
+    }
+  }
+}

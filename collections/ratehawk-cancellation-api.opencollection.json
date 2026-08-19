@@ -1,0 +1,40 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "RateHawk / ETG API (WorldOta APIv3) Booking Cancellation API",
+    "version": "3.0"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Cancellation",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Order cancellation",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.worldota.net/api/b2b/v3/hotel/order/cancel/",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Cancels a booking by the partner's booking identifier. Relevant for reservations with completed / rejected status; allows cancellation of non-refundable bookings with applicable charges."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

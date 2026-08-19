@@ -1,0 +1,70 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "RateHawk / ETG API (WorldOta APIv3) Booking API",
+    "version": "3.0"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Booking",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create booking process (order booking form)",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.worldota.net/api/b2b/v3/hotel/order/booking/form/",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new reservation process from a prebooked rate's book_hash. The process of reserving a rate includes several stages depending on whether 3-D Secure and/or fraud checks are required."
+        },
+        {
+          "info": {
+            "name": "Order booking finish",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.worldota.net/api/b2b/v3/hotel/order/booking/finish/",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Completes the reservation. The reservation is carried out asynchronously: the partner launches the process via this call and then repeatedly polls Order Booking Finish Status."
+        },
+        {
+          "info": {
+            "name": "Order booking finish status",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.worldota.net/api/b2b/v3/hotel/order/booking/finish/status/",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Status check for the asynchronous order completion process. Poll this endpoint until processing changes to ok or a final failure status."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

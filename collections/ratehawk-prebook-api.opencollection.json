@@ -1,0 +1,40 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "RateHawk / ETG API (WorldOta APIv3) Booking Prebook API",
+    "version": "3.0"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Prebook",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Prebook rate from hotelpage step",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.worldota.net/api/b2b/v3/hotel/prebook/",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates the availability and price of the requested rate and attempts to find a comparable or similar rate if the original is unavailable. Use price_increase_percent to bound how much higher the new price may be than the original."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,51 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "RateHawk / ETG API (WorldOta APIv3) Booking Orders API",
+    "version": "3.0"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Orders",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Endpoints overview",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.worldota.net/api/b2b/v3/overview/"
+          },
+          "docs": "Returns the list of all endpoints available for your contract and their settings."
+        },
+        {
+          "info": {
+            "name": "Order information",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.worldota.net/api/b2b/v3/hotel/order/info/",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Retrieves a created order's information by the partner's booking identifier. Relevant only for reservations that were successfully created."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

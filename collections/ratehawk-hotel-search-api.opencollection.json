@@ -1,0 +1,85 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "RateHawk / ETG API (WorldOta APIv3) Booking Hotel Search API",
+    "version": "3.0"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Hotel Search",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Search Engine Results Page by region",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.worldota.net/api/b2b/v3/search/serp/region/",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Preliminary search (SERP) for hotels with available accommodation within a region that matches the given search conditions."
+        },
+        {
+          "info": {
+            "name": "Search Engine Results Page by hotel IDs",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.worldota.net/api/b2b/v3/search/serp/hotels/",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Preliminary search (SERP) for a specific set of hotels by their identifiers matching the given search conditions."
+        },
+        {
+          "info": {
+            "name": "Search Engine Results Page by geo coordinates",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.worldota.net/api/b2b/v3/search/serp/geo/",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Preliminary search (SERP) for hotels within a radius of the given latitude and longitude."
+        },
+        {
+          "info": {
+            "name": "Retrieve hotelpage",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.worldota.net/api/b2b/v3/search/hp/",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Hotel rates actualization for a single hotel. Should be requested only after the user has chosen the hotel; returns the up-to-date set of bookable rates with their book_hash values."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
