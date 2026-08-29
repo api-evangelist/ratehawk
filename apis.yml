@@ -8,6 +8,18 @@ description: RateHawk is the B2B hotel and travel booking brand of Emerging Trav
   rates, covering hotel search, prebook, the asynchronous order booking flow, static
   hotel content, and cancellation over a JSON REST interface secured with HTTP Basic
   auth.
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: true
+  label: Hosted service · you call their endpoint
+  confidence: high
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: freemium
   onboarding: self-serve
