@@ -1,6 +1,6 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: RateHawk / ETG API (WorldOta APIv3) Booking Hotel Search API
+  title: RateHawk / ETG API (WorldOta APIv3) Hotel Search API
   description: B2B hotel and travel booking API operated by Emerging Travel Group (ETG) and exposed to partners as the RateHawk API. The Partner API (pAPI) v3 covers hotel search (SERP by region, hotels, and geo), hotelpage rate actualization, prebook, the asynchronous order booking flow (form, finish, finish status), order information, cancellation, and static hotel content. All endpoints are HTTP POST that accept and return JSON and authenticate with HTTP Basic using a key id (username) and key (password).
   termsOfService: https://www.ratehawk.com/
   contact:
@@ -99,24 +99,15 @@ paths:
                 $ref: '#/components/schemas/SearchResponse'
 components:
   schemas:
-    HotelPageRequest:
-      allOf:
-      - $ref: '#/components/schemas/BaseSearchRequest'
-      - type: object
-        required:
-        - id
-        properties:
-          id:
-            type: string
-            description: Hotel identifier.
     SearchResponse:
       type: object
       properties:
         status:
           type: string
         error:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         data:
           type: object
           properties:
@@ -133,6 +124,32 @@ components:
                       type: object
             total_hotels:
               type: integer
+    GeoSearchRequest:
+      allOf:
+      - $ref: '#/components/schemas/BaseSearchRequest'
+      - type: object
+        required:
+        - latitude
+        - longitude
+        - radius
+        properties:
+          latitude:
+            type: number
+            format: float
+          longitude:
+            type: number
+            format: float
+          radius:
+            type: integer
+    RegionSearchRequest:
+      allOf:
+      - $ref: '#/components/schemas/BaseSearchRequest'
+      - type: object
+        required:
+        - region_id
+        properties:
+          region_id:
+            type: integer
     HotelsSearchRequest:
       allOf:
       - $ref: '#/components/schemas/BaseSearchRequest'
@@ -144,6 +161,27 @@ components:
             type: array
             items:
               type: string
+    HotelPageRequest:
+      allOf:
+      - $ref: '#/components/schemas/BaseSearchRequest'
+      - type: object
+        required:
+        - id
+        properties:
+          id:
+            type: string
+            description: Hotel identifier.
+    GuestsGroup:
+      type: object
+      required:
+      - adults
+      properties:
+        adults:
+          type: integer
+        children:
+          type: array
+          items:
+            type: integer
     BaseSearchRequest:
       type: object
       required:
@@ -169,43 +207,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/GuestsGroup'
-    RegionSearchRequest:
-      allOf:
-      - $ref: '#/components/schemas/BaseSearchRequest'
-      - type: object
-        required:
-        - region_id
-        properties:
-          region_id:
-            type: integer
-    GuestsGroup:
-      type: object
-      required:
-      - adults
-      properties:
-        adults:
-          type: integer
-        children:
-          type: array
-          items:
-            type: integer
-    GeoSearchRequest:
-      allOf:
-      - $ref: '#/components/schemas/BaseSearchRequest'
-      - type: object
-        required:
-        - latitude
-        - longitude
-        - radius
-        properties:
-          latitude:
-            type: number
-            format: float
-          longitude:
-            type: number
-            format: float
-          radius:
-            type: integer
   securitySchemes:
     basicAuth:
       type: http

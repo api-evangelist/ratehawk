@@ -1,6 +1,6 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: RateHawk / ETG API (WorldOta APIv3) Booking Cancellation API
+  title: RateHawk / ETG API (WorldOta APIv3) Cancellation API
   description: B2B hotel and travel booking API operated by Emerging Travel Group (ETG) and exposed to partners as the RateHawk API. The Partner API (pAPI) v3 covers hotel search (SERP by region, hotels, and geo), hotelpage rate actualization, prebook, the asynchronous order booking flow (form, finish, finish status), order information, cancellation, and static hotel content. All endpoints are HTTP POST that accept and return JSON and authenticate with HTTP Basic using a key id (username) and key (password).
   termsOfService: https://www.ratehawk.com/
   contact:
@@ -46,14 +46,17 @@ components:
           type: string
           description: ok or error.
         error:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         debug:
-          type: object
-          nullable: true
+          type:
+          - object
+          - 'null'
         data:
-          type: object
-          nullable: true
+          type:
+          - object
+          - 'null'
     OrderCancelRequest:
       type: object
       required:

@@ -1,6 +1,6 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: RateHawk / ETG API (WorldOta APIv3) Booking Hotel Content API
+  title: RateHawk / ETG API (WorldOta APIv3) Hotel Content API
   description: B2B hotel and travel booking API operated by Emerging Travel Group (ETG) and exposed to partners as the RateHawk API. The Partner API (pAPI) v3 covers hotel search (SERP by region, hotels, and geo), hotelpage rate actualization, prebook, the asynchronous order booking flow (form, finish, finish status), order information, cancellation, and static hotel content. All endpoints are HTTP POST that accept and return JSON and authenticate with HTTP Basic using a key id (username) and key (password).
   termsOfService: https://www.ratehawk.com/
   contact:
@@ -59,21 +59,19 @@ paths:
                 $ref: '#/components/schemas/BaseResponse'
 components:
   schemas:
-    BaseResponse:
+    Region:
       type: object
       properties:
-        status:
+        id:
+          type: integer
+        name:
           type: string
-          description: ok or error.
-        error:
+        country_code:
           type: string
-          nullable: true
-        debug:
-          type: object
-          nullable: true
-        data:
-          type: object
-          nullable: true
+        iata:
+          type: string
+        type:
+          type: string
     HotelInfoRequest:
       type: object
       required:
@@ -93,29 +91,6 @@ components:
           type: string
         inventory:
           type: string
-    Region:
-      type: object
-      properties:
-        id:
-          type: integer
-        name:
-          type: string
-        country_code:
-          type: string
-        iata:
-          type: string
-        type:
-          type: string
-    HotelInfoResponse:
-      type: object
-      properties:
-        status:
-          type: string
-        error:
-          type: string
-          nullable: true
-        data:
-          $ref: '#/components/schemas/HotelInfoData'
     HotelInfoData:
       type: object
       properties:
@@ -141,6 +116,35 @@ components:
           $ref: '#/components/schemas/Region'
         is_closed:
           type: boolean
+    BaseResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          description: ok or error.
+        error:
+          type:
+          - string
+          - 'null'
+        debug:
+          type:
+          - object
+          - 'null'
+        data:
+          type:
+          - object
+          - 'null'
+    HotelInfoResponse:
+      type: object
+      properties:
+        status:
+          type: string
+        error:
+          type:
+          - string
+          - 'null'
+        data:
+          $ref: '#/components/schemas/HotelInfoData'
   securitySchemes:
     basicAuth:
       type: http

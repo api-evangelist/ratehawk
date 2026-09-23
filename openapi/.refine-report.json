@@ -1,12 +1,7 @@
 {
   "provider": "ratehawk",
   "sources": [
-    "ratehawk-booking-api-openapi.yml",
-    "ratehawk-cancellation-api-openapi.yml",
-    "ratehawk-hotel-content-api-openapi.yml",
-    "ratehawk-hotel-search-api-openapi.yml",
-    "ratehawk-orders-api-openapi.yml",
-    "ratehawk-prebook-api-openapi.yml"
+    "_original/ratehawk-openapi.yml"
   ],
   "outputs": [
     "ratehawk-booking-api-openapi.yml",
@@ -19,6 +14,17 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "ratehawk-openapi.yml: upgraded openapi 3.0.1 -> OpenAPI 3.2.0",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "ratehawk-booking-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "ratehawk-cancellation-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "ratehawk-hotel-content-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "ratehawk-hotel-search-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "ratehawk-orders-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "ratehawk-prebook-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }
