@@ -99,6 +99,17 @@ paths:
                 $ref: '#/components/schemas/SearchResponse'
 components:
   schemas:
+    HotelsSearchRequest:
+      allOf:
+      - $ref: '#/components/schemas/BaseSearchRequest'
+      - type: object
+        required:
+        - ids
+        properties:
+          ids:
+            type: array
+            items:
+              type: string
     SearchResponse:
       type: object
       properties:
@@ -141,26 +152,6 @@ components:
             format: float
           radius:
             type: integer
-    RegionSearchRequest:
-      allOf:
-      - $ref: '#/components/schemas/BaseSearchRequest'
-      - type: object
-        required:
-        - region_id
-        properties:
-          region_id:
-            type: integer
-    HotelsSearchRequest:
-      allOf:
-      - $ref: '#/components/schemas/BaseSearchRequest'
-      - type: object
-        required:
-        - ids
-        properties:
-          ids:
-            type: array
-            items:
-              type: string
     HotelPageRequest:
       allOf:
       - $ref: '#/components/schemas/BaseSearchRequest'
@@ -181,6 +172,15 @@ components:
         children:
           type: array
           items:
+            type: integer
+    RegionSearchRequest:
+      allOf:
+      - $ref: '#/components/schemas/BaseSearchRequest'
+      - type: object
+        required:
+        - region_id
+        properties:
+          region_id:
             type: integer
     BaseSearchRequest:
       type: object

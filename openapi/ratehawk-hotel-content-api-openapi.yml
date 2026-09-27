@@ -59,19 +59,6 @@ paths:
                 $ref: '#/components/schemas/BaseResponse'
 components:
   schemas:
-    Region:
-      type: object
-      properties:
-        id:
-          type: integer
-        name:
-          type: string
-        country_code:
-          type: string
-        iata:
-          type: string
-        type:
-          type: string
     HotelInfoRequest:
       type: object
       required:
@@ -91,6 +78,37 @@ components:
           type: string
         inventory:
           type: string
+    Region:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        country_code:
+          type: string
+        iata:
+          type: string
+        type:
+          type: string
+    BaseResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          description: ok or error.
+        error:
+          type:
+          - string
+          - 'null'
+        debug:
+          type:
+          - object
+          - 'null'
+        data:
+          type:
+          - object
+          - 'null'
     HotelInfoData:
       type: object
       properties:
@@ -116,24 +134,6 @@ components:
           $ref: '#/components/schemas/Region'
         is_closed:
           type: boolean
-    BaseResponse:
-      type: object
-      properties:
-        status:
-          type: string
-          description: ok or error.
-        error:
-          type:
-          - string
-          - 'null'
-        debug:
-          type:
-          - object
-          - 'null'
-        data:
-          type:
-          - object
-          - 'null'
     HotelInfoResponse:
       type: object
       properties:

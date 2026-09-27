@@ -79,20 +79,12 @@ paths:
                 $ref: '#/components/schemas/BaseResponse'
 components:
   schemas:
-    OrderBookingFormRequest:
+    OrderBookingFinishStatusRequest:
       type: object
       required:
       - partner_order_id
-      - book_hash
       properties:
         partner_order_id:
-          type: string
-          description: Unique partner booking identifier.
-        book_hash:
-          type: string
-        language:
-          type: string
-        user_ip:
           type: string
     BaseResponse:
       type: object
@@ -112,12 +104,20 @@ components:
           type:
           - object
           - 'null'
-    OrderBookingFinishStatusRequest:
+    OrderBookingFormRequest:
       type: object
       required:
       - partner_order_id
+      - book_hash
       properties:
         partner_order_id:
+          type: string
+          description: Unique partner booking identifier.
+        book_hash:
+          type: string
+        language:
+          type: string
+        user_ip:
           type: string
     OrderBookingFinishRequest:
       type: object
