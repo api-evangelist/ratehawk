@@ -59,25 +59,6 @@ paths:
                 $ref: '#/components/schemas/BaseResponse'
 components:
   schemas:
-    HotelInfoRequest:
-      type: object
-      required:
-      - id
-      - language
-      properties:
-        id:
-          type: string
-        language:
-          type: string
-    HotelInfoDumpRequest:
-      type: object
-      required:
-      - language
-      properties:
-        language:
-          type: string
-        inventory:
-          type: string
     Region:
       type: object
       properties:
@@ -91,24 +72,6 @@ components:
           type: string
         type:
           type: string
-    BaseResponse:
-      type: object
-      properties:
-        status:
-          type: string
-          description: ok or error.
-        error:
-          type:
-          - string
-          - 'null'
-        debug:
-          type:
-          - object
-          - 'null'
-        data:
-          type:
-          - object
-          - 'null'
     HotelInfoData:
       type: object
       properties:
@@ -145,6 +108,43 @@ components:
           - 'null'
         data:
           $ref: '#/components/schemas/HotelInfoData'
+    HotelInfoRequest:
+      type: object
+      required:
+      - id
+      - language
+      properties:
+        id:
+          type: string
+        language:
+          type: string
+    HotelInfoDumpRequest:
+      type: object
+      required:
+      - language
+      properties:
+        language:
+          type: string
+        inventory:
+          type: string
+    BaseResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          description: ok or error.
+        error:
+          type:
+          - string
+          - 'null'
+        debug:
+          type:
+          - object
+          - 'null'
+        data:
+          type:
+          - object
+          - 'null'
   securitySchemes:
     basicAuth:
       type: http
