@@ -99,23 +99,6 @@ paths:
                 $ref: '#/components/schemas/SearchResponse'
 components:
   schemas:
-    GeoSearchRequest:
-      allOf:
-      - $ref: '#/components/schemas/BaseSearchRequest'
-      - type: object
-        required:
-        - latitude
-        - longitude
-        - radius
-        properties:
-          latitude:
-            type: number
-            format: float
-          longitude:
-            type: number
-            format: float
-          radius:
-            type: integer
     GuestsGroup:
       type: object
       required:
@@ -126,6 +109,15 @@ components:
         children:
           type: array
           items:
+            type: integer
+    RegionSearchRequest:
+      allOf:
+      - $ref: '#/components/schemas/BaseSearchRequest'
+      - type: object
+        required:
+        - region_id
+        properties:
+          region_id:
             type: integer
     BaseSearchRequest:
       type: object
@@ -152,36 +144,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/GuestsGroup'
-    RegionSearchRequest:
-      allOf:
-      - $ref: '#/components/schemas/BaseSearchRequest'
-      - type: object
-        required:
-        - region_id
-        properties:
-          region_id:
-            type: integer
-    HotelsSearchRequest:
-      allOf:
-      - $ref: '#/components/schemas/BaseSearchRequest'
-      - type: object
-        required:
-        - ids
-        properties:
-          ids:
-            type: array
-            items:
-              type: string
-    HotelPageRequest:
-      allOf:
-      - $ref: '#/components/schemas/BaseSearchRequest'
-      - type: object
-        required:
-        - id
-        properties:
-          id:
-            type: string
-            description: Hotel identifier.
     SearchResponse:
       type: object
       properties:
@@ -207,6 +169,44 @@ components:
                       type: object
             total_hotels:
               type: integer
+    GeoSearchRequest:
+      allOf:
+      - $ref: '#/components/schemas/BaseSearchRequest'
+      - type: object
+        required:
+        - latitude
+        - longitude
+        - radius
+        properties:
+          latitude:
+            type: number
+            format: float
+          longitude:
+            type: number
+            format: float
+          radius:
+            type: integer
+    HotelPageRequest:
+      allOf:
+      - $ref: '#/components/schemas/BaseSearchRequest'
+      - type: object
+        required:
+        - id
+        properties:
+          id:
+            type: string
+            description: Hotel identifier.
+    HotelsSearchRequest:
+      allOf:
+      - $ref: '#/components/schemas/BaseSearchRequest'
+      - type: object
+        required:
+        - ids
+        properties:
+          ids:
+            type: array
+            items:
+              type: string
   securitySchemes:
     basicAuth:
       type: http

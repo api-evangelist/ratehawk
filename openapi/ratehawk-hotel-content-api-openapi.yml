@@ -59,19 +59,6 @@ paths:
                 $ref: '#/components/schemas/BaseResponse'
 components:
   schemas:
-    Region:
-      type: object
-      properties:
-        id:
-          type: integer
-        name:
-          type: string
-        country_code:
-          type: string
-        iata:
-          type: string
-        type:
-          type: string
     HotelInfoData:
       type: object
       properties:
@@ -97,6 +84,38 @@ components:
           $ref: '#/components/schemas/Region'
         is_closed:
           type: boolean
+    Region:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        country_code:
+          type: string
+        iata:
+          type: string
+        type:
+          type: string
+    HotelInfoDumpRequest:
+      type: object
+      required:
+      - language
+      properties:
+        language:
+          type: string
+        inventory:
+          type: string
+    HotelInfoRequest:
+      type: object
+      required:
+      - id
+      - language
+      properties:
+        id:
+          type: string
+        language:
+          type: string
     HotelInfoResponse:
       type: object
       properties:
@@ -108,25 +127,6 @@ components:
           - 'null'
         data:
           $ref: '#/components/schemas/HotelInfoData'
-    HotelInfoRequest:
-      type: object
-      required:
-      - id
-      - language
-      properties:
-        id:
-          type: string
-        language:
-          type: string
-    HotelInfoDumpRequest:
-      type: object
-      required:
-      - language
-      properties:
-        language:
-          type: string
-        inventory:
-          type: string
     BaseResponse:
       type: object
       properties:

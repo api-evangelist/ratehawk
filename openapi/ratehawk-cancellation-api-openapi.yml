@@ -39,16 +39,6 @@ paths:
                 $ref: '#/components/schemas/BaseResponse'
 components:
   schemas:
-    OrderCancelRequest:
-      type: object
-      required:
-      - partner_order_id
-      properties:
-        partner_order_id:
-          type: string
-          minLength: 1
-          maxLength: 256
-          description: Unique partner booking identifier.
     BaseResponse:
       type: object
       properties:
@@ -67,6 +57,16 @@ components:
           type:
           - object
           - 'null'
+    OrderCancelRequest:
+      type: object
+      required:
+      - partner_order_id
+      properties:
+        partner_order_id:
+          type: string
+          minLength: 1
+          maxLength: 256
+          description: Unique partner booking identifier.
   securitySchemes:
     basicAuth:
       type: http
