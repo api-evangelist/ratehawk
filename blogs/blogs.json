@@ -2,12 +2,13 @@
   "repo": "ratehawk",
   "feeds": [
     {
-      "source": "https://ratehawk.com/blog/feed/",
+      "source": "https://blog.ratehawk.com/feed/",
       "feed_url": "https://blog.ratehawk.com/feed/",
-      "title": "RateHawk/Ostrovok Travel Blog",
-      "saved": 2
+      "title": "",
+      "saved": 0,
+      "method": "feed"
     }
   ],
-  "fetched": "2026-10-03T12:15:37Z",
-  "post_count": 81
+  "fetched": "2026-10-10T13:15:00Z",
+  "post_count": 82
 }
