@@ -99,6 +99,26 @@ paths:
                 $ref: '#/components/schemas/SearchResponse'
 components:
   schemas:
+    HotelsSearchRequest:
+      allOf:
+      - $ref: '#/components/schemas/BaseSearchRequest'
+      - type: object
+        required:
+        - ids
+        properties:
+          ids:
+            type: array
+            items:
+              type: string
+    RegionSearchRequest:
+      allOf:
+      - $ref: '#/components/schemas/BaseSearchRequest'
+      - type: object
+        required:
+        - region_id
+        properties:
+          region_id:
+            type: integer
     GuestsGroup:
       type: object
       required:
@@ -110,40 +130,6 @@ components:
           type: array
           items:
             type: integer
-    RegionSearchRequest:
-      allOf:
-      - $ref: '#/components/schemas/BaseSearchRequest'
-      - type: object
-        required:
-        - region_id
-        properties:
-          region_id:
-            type: integer
-    BaseSearchRequest:
-      type: object
-      required:
-      - checkin
-      - checkout
-      - guests
-      properties:
-        checkin:
-          type: string
-          format: date
-        checkout:
-          type: string
-          format: date
-        currency:
-          type: string
-        residency:
-          type: string
-        language:
-          type: string
-        timeout:
-          type: integer
-        guests:
-          type: array
-          items:
-            $ref: '#/components/schemas/GuestsGroup'
     SearchResponse:
       type: object
       properties:
@@ -169,6 +155,41 @@ components:
                       type: object
             total_hotels:
               type: integer
+    HotelPageRequest:
+      allOf:
+      - $ref: '#/components/schemas/BaseSearchRequest'
+      - type: object
+        required:
+        - id
+        properties:
+          id:
+            type: string
+            description: Hotel identifier.
+    BaseSearchRequest:
+      type: object
+      required:
+      - checkin
+      - checkout
+      - guests
+      properties:
+        checkin:
+          type: string
+          format: date
+        checkout:
+          type: string
+          format: date
+        currency:
+          type: string
+        residency:
+          type: string
+        language:
+          type: string
+        timeout:
+          type: integer
+        guests:
+          type: array
+          items:
+            $ref: '#/components/schemas/GuestsGroup'
     GeoSearchRequest:
       allOf:
       - $ref: '#/components/schemas/BaseSearchRequest'
@@ -186,27 +207,6 @@ components:
             format: float
           radius:
             type: integer
-    HotelPageRequest:
-      allOf:
-      - $ref: '#/components/schemas/BaseSearchRequest'
-      - type: object
-        required:
-        - id
-        properties:
-          id:
-            type: string
-            description: Hotel identifier.
-    HotelsSearchRequest:
-      allOf:
-      - $ref: '#/components/schemas/BaseSearchRequest'
-      - type: object
-        required:
-        - ids
-        properties:
-          ids:
-            type: array
-            items:
-              type: string
   securitySchemes:
     basicAuth:
       type: http

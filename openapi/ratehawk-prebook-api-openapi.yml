@@ -39,6 +39,17 @@ paths:
                 $ref: '#/components/schemas/BaseResponse'
 components:
   schemas:
+    PrebookRequest:
+      type: object
+      required:
+      - hash
+      properties:
+        hash:
+          type: string
+          description: book_hash of the rate selected on the hotelpage step.
+        price_increase_percent:
+          type: integer
+          description: Maximum percent the actualized price may exceed the original price.
     BaseResponse:
       type: object
       properties:
@@ -57,17 +68,6 @@ components:
           type:
           - object
           - 'null'
-    PrebookRequest:
-      type: object
-      required:
-      - hash
-      properties:
-        hash:
-          type: string
-          description: book_hash of the rate selected on the hotelpage step.
-        price_increase_percent:
-          type: integer
-          description: Maximum percent the actualized price may exceed the original price.
   securitySchemes:
     basicAuth:
       type: http

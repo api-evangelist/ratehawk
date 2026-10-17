@@ -86,6 +86,39 @@ components:
       properties:
         partner_order_id:
           type: string
+    OrderBookingFormRequest:
+      type: object
+      required:
+      - partner_order_id
+      - book_hash
+      properties:
+        partner_order_id:
+          type: string
+          description: Unique partner booking identifier.
+        book_hash:
+          type: string
+        language:
+          type: string
+        user_ip:
+          type: string
+    BaseResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          description: ok or error.
+        error:
+          type:
+          - string
+          - 'null'
+        debug:
+          type:
+          - object
+          - 'null'
+        data:
+          type:
+          - object
+          - 'null'
     OrderBookingFinishRequest:
       type: object
       required:
@@ -130,39 +163,6 @@ components:
               type: string
             currency_code:
               type: string
-    BaseResponse:
-      type: object
-      properties:
-        status:
-          type: string
-          description: ok or error.
-        error:
-          type:
-          - string
-          - 'null'
-        debug:
-          type:
-          - object
-          - 'null'
-        data:
-          type:
-          - object
-          - 'null'
-    OrderBookingFormRequest:
-      type: object
-      required:
-      - partner_order_id
-      - book_hash
-      properties:
-        partner_order_id:
-          type: string
-          description: Unique partner booking identifier.
-        book_hash:
-          type: string
-        language:
-          type: string
-        user_ip:
-          type: string
   securitySchemes:
     basicAuth:
       type: http
