@@ -1,4 +1,4 @@
-# RateHawk (ratehawk)
+# RateHawk
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,136 +66,126 @@
 
 RateHawk is the B2B hotel and travel booking brand of Emerging Travel Group (ETG). Its Partner API (pAPI v3, served from api.worldota.net) gives OTAs, travel platforms, and agencies programmatic access to 2.5M+ properties with net rates, covering hotel search, prebook, the asynchronous order booking flow, static hotel content, and cancellation over a JSON REST interface secured with HTTP Basic auth.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/ratehawk/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/ratehawk/refs/heads/main/apis.yml)
+**Areas:** Travel · Hotels · Booking · B2B · Reservations
 
-## Tags
+## RateHawk on APIs.io
 
-- Travel
-- Hotels
-- Booking
-- B2B
-- Reservations
+Everything profiled for RateHawk is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/ratehawk/](https://apis.io/providers/ratehawk/)** — or go straight to one of the APIs or properties below.
 
-## Timestamps
+### APIs (6)
 
-- **Created:** 2026-06-25
-- **Modified:** 2026-06-25
+- [RateHawk Booking API](https://apis.io/apis/ratehawk/ratehawk-booking-api/) — The Booking API from RateHawk — 3 operation(s) for booking.
+- [RateHawk Cancellation API](https://apis.io/apis/ratehawk/ratehawk-cancellation-api/) — The Cancellation API from RateHawk — 1 operation(s) for cancellation.
+- [RateHawk Hotel Content API](https://apis.io/apis/ratehawk/ratehawk-hotel-content-api/) — The Hotel Content API from RateHawk — 2 operation(s) for hotel content.
+- [RateHawk Hotel Search API](https://apis.io/apis/ratehawk/ratehawk-hotel-search-api/) — The Hotel Search API from RateHawk — 4 operation(s) for hotel search.
+- [RateHawk Orders API](https://apis.io/apis/ratehawk/ratehawk-orders-api/) — The Orders API from RateHawk — 2 operation(s) for orders.
+- [RateHawk Prebook API](https://apis.io/apis/ratehawk/ratehawk-prebook-api/) — The Prebook API from RateHawk — 1 operation(s) for prebook.
 
-## APIs
+### Published properties
 
-### RateHawk Hotel Search API
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-Search Engine Results Page (SERP) endpoints returning available hotels and rates by region, by hotel IDs (max 300), or by geo radius for the given dates, occupancy, currency, and residency.
+#### Agentic access (1)
 
-- **Human URL:** [https://docs.emergingtravel.com/docs/b2b-api/hotel-search/](https://docs.emergingtravel.com/docs/b2b-api/hotel-search/)
-- **Base URL:** `https://api.worldota.net/api/b2b/v3`
+Which operations an agent can call, which act, and which need a human in the loop.
 
-#### Tags
+- [Ratehawk Agentic Access](https://apis.io/agentic-access/ratehawk/ratehawk-agentic-access/)
 
-- Hotel Search
-- SERP
-- Availability
+#### Collections (7)
 
-#### Properties
+Postman and Open Collection request collections.
 
-- [Documentation](https://docs.emergingtravel.com/docs/b2b-api/hotel-search/)
-- [API Reference](https://docs.emergingtravel.com/docs/b2b-api/endpoints/)
-- [OpenAPI](openapi/ratehawk-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/ratehawk.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/ratehawk.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [RateHawk / ETG API (WorldOta APIv3)](https://apis.io/collections/ratehawk/open-ratehawk/)
+- [RateHawk / ETG API (WorldOta APIv3) Booking API](https://apis.io/collections/ratehawk/open-ratehawk-booking-api/)
+- [RateHawk / ETG API (WorldOta APIv3) Booking Cancellation API](https://apis.io/collections/ratehawk/open-ratehawk-cancellation-api/)
+- [RateHawk / ETG API (WorldOta APIv3) Booking Hotel Content API](https://apis.io/collections/ratehawk/open-ratehawk-hotel-content-api/)
+- [RateHawk / ETG API (WorldOta APIv3) Booking Hotel Search API](https://apis.io/collections/ratehawk/open-ratehawk-hotel-search-api/)
+- [RateHawk / ETG API (WorldOta APIv3) Booking Orders API](https://apis.io/collections/ratehawk/open-ratehawk-orders-api/)
+- [RateHawk / ETG API (WorldOta APIv3) Booking Prebook API](https://apis.io/collections/ratehawk/open-ratehawk-prebook-api/)
 
-### RateHawk Hotel Page / Prebook API
+#### Security (2)
 
-Retrieve Hotelpage actualizes bookable rates and book_hash values for a single chosen hotel, and Prebook revalidates availability and price for the selected rate (with an optional price_increase_percent bound) before booking.
+Authentication, trust centre, and vulnerability disclosure.
 
-- **Human URL:** [https://docs.emergingtravel.com/docs/b2b-api/hotel-search/retrieve-hotelpage/](https://docs.emergingtravel.com/docs/b2b-api/hotel-search/retrieve-hotelpage/)
-- **Base URL:** `https://api.worldota.net/api/b2b/v3`
+- [Ratehawk Authentication](https://apis.io/security/ratehawk/ratehawk-authentication/)
+- [Ratehawk Domain Security](https://apis.io/security/ratehawk/ratehawk-domain-security/)
 
-#### Tags
+#### Plans and pricing (1)
 
-- Hotel Page
-- Prebook
-- Rate Confirmation
+Published plans, tiers and prices.
 
-#### Properties
+- [Ratehawk Plans Pricing](https://apis.io/plans/ratehawk/ratehawk-plans-pricing/)
 
-- [Documentation](https://docs.emergingtravel.com/docs/b2b-api/hotel-search/retrieve-hotelpage/)
-- [API Reference](https://docs.emergingtravel.com/docs/b2b-api/hotel-search/prebook-rate-from-hotelpage-step/)
-- [OpenAPI](openapi/ratehawk-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/ratehawk.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/ratehawk.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+#### Rate limits (1)
 
-### RateHawk Order Booking API
+Published request limits.
 
-The asynchronous order booking flow - booking form, booking finish, and booking finish status polling - plus order information retrieval and order cancellation by the partner's booking identifier.
+- [Ratehawk Rate Limits](https://apis.io/rate-limits/ratehawk/ratehawk-rate-limits/)
 
-- **Human URL:** [https://docs.emergingtravel.com/docs/b2b-api/booking/](https://docs.emergingtravel.com/docs/b2b-api/booking/)
-- **Base URL:** `https://api.worldota.net/api/b2b/v3`
+#### FinOps (1)
 
-#### Tags
+What the API costs to run, by operation.
 
-- Booking
-- Orders
-- Reservations
+- [Ratehawk Finops](https://apis.io/finops/ratehawk/ratehawk-finops/)
 
-#### Properties
+## Where to find this API
 
-- [Documentation](https://docs.emergingtravel.com/docs/b2b-api/booking/create-booking-process/)
-- [API Reference](https://docs.emergingtravel.com/docs/b2b-api/booking/check-booking-process/)
-- [OpenAPI](openapi/ratehawk-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/ratehawk.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/ratehawk.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
 
-### RateHawk Hotel Content / Static API
-
-Static hotel content - address, amenities, descriptions, images, metapolicy, room groups, and star rating - via per-hotel lookup plus full and incremental hotel data dump archives used to build a local catalog.
-
-- **Human URL:** [https://docs.emergingtravel.com/docs/b2b-api/static-content/](https://docs.emergingtravel.com/docs/b2b-api/static-content/)
-- **Base URL:** `https://api.worldota.net/api/b2b/v3`
-
-#### Tags
-
-- Static Content
-- Hotel Data
-- Dump
-
-#### Properties
-
-- [Documentation](https://docs.emergingtravel.com/docs/b2b-api/static-content/b2b-v3-hotel-info/)
-- [API Reference](https://docs.emergingtravel.com/docs/b2b-api/static-content/retrieve-hotel-incremental-dump/)
-- [OpenAPI](openapi/ratehawk-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/ratehawk.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/ratehawk.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### RateHawk Webhooks
-
-Asynchronous order status notifications delivered to a partner-registered callback URL, used as an alternative to polling the booking finish status endpoint for booking completion.
-
-- **Human URL:** [https://docs.emergingtravel.com/docs/integration-guide/](https://docs.emergingtravel.com/docs/integration-guide/)
-- **Base URL:** `https://api.worldota.net/api/b2b/v3`
-
-#### Tags
-
-- Webhooks
-- Notifications
-- Events
-
-#### Properties
-
-- [Documentation](https://docs.emergingtravel.com/docs/integration-guide/)
-- [OpenAPI](openapi/ratehawk-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-
-## Common Properties
-
-- [GitHub Organization](https://github.com/EmergingTravel)
-- [LinkedIn](https://www.linkedin.com/company/ratehawk-com)
 - [Website](https://www.ratehawk.com)
 - [Documentation](https://docs.emergingtravel.com/)
-- [Plans](plans/ratehawk-plans-pricing.yml)
-- [Rate Limits](rate-limits/ratehawk-rate-limits.yml)
-- [Fin Ops](finops/ratehawk-finops.yml)
+- [Blog](https://blog.ratehawk.com/feed/)
+- [GitHub](https://github.com/EmergingTravel)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Kin Lane
-**Email:** kin@apievangelist.com
+**Kin Score 26.9** — thin · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 66.1 |
+| Contract quality | 48.4 |
+| Contract governance | 0.0 |
+| Operational transparency | 10.5 |
+| Developer ergonomics | 32.1 |
+| Access clarity | 7.9 |
+
+**Agent readiness 19.6** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | documented (partial credit) |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | — |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 11.8** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/ratehawk/](https://apis.io/providers/ratehawk/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for RateHawk: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/ratehawk/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
